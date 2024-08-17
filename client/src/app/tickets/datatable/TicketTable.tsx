@@ -49,7 +49,7 @@ const TicketTable: React.FC<TicketTableProps> = ({ columns }) => {
       <Stack direction="row" spacing={2} sx={{ marginY: 2 }}>
         {renderFilterStatus()}
       </Stack>
-    ); 
+    );
   };
 
   const renderFilterStatus = () => {
@@ -88,9 +88,9 @@ const TicketTable: React.FC<TicketTableProps> = ({ columns }) => {
       );
     }
     return tickets.map((ticket) => (
-      <TableRow>
+      <TableRow key={ticket.id}>
         {columns.map((column) => (
-          <TableCell align={column.align}>
+          <TableCell key={column.columnKey} align={column.align}>
             <TicketRowContent ticket={ticket} {...column} />
           </TableCell>
         ))}

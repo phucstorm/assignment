@@ -5,7 +5,7 @@ import {
   SelectChangeEvent,
 } from '@mui/material';
 import { useAppSelector } from 'client/src/hooks';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { UserInfo } from '../UserInfo';
 
 interface SelectAssigneeProps {
@@ -13,8 +13,12 @@ interface SelectAssigneeProps {
   onChange: (assigneeId: number) => void;
 }
 const SelectAssignee: React.FC<SelectAssigneeProps> = ({ value, onChange }) => {
-  const [selected, setSelected] = useState(value);
+  const [selected, setSelected] = useState(0);
   const users = useAppSelector((state) => state.users.list);
+
+  useEffect(() => {
+    setSelected(value ?? 0)
+  },[value])
 
   const onChangeAssignee = (e: SelectChangeEvent<number>) => {
     setSelected(Number(e.target.value));

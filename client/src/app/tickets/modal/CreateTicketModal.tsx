@@ -17,33 +17,29 @@ interface AddTicketModalProps {
   onClose: () => void;
 }
 const AddTicketModal: React.FC<AddTicketModalProps> = ({ open, onClose }) => {
-  const [description, setDescription] = useState("")
+  const [description, setDescription] = useState('');
   const { createTicket } = useTicketApi();
 
   const onCreate = () => {
-    createTicket.mutate({ description })
-    onReset()
-  }
+    createTicket.mutate({ description });
+    onReset();
+  };
 
   const onReset = () => {
-    setDescription("")
-    onClose()
+    setDescription('');
+    onClose();
+  };
 
-  }
-
-  const DialogActionCancel = (
-    <Button variant="outlined" onClick={onClose}>
-      Cancel
-    </Button>
-  );
-  const DialogActionConfirm = (
-    <Button variant="contained" onClick={onCreate}>
-      Create
-    </Button>
-  );
   const renderDialogActions = () => {
     return (
-      <DialogActions>{[DialogActionCancel, DialogActionConfirm]}</DialogActions>
+      <DialogActions>
+        <Button variant="outlined" onClick={onClose}>
+          Cancel
+        </Button>
+        <Button variant="contained" onClick={onCreate}>
+          Create
+        </Button>
+      </DialogActions>
     );
   };
 
@@ -61,7 +57,7 @@ const AddTicketModal: React.FC<AddTicketModalProps> = ({ open, onClose }) => {
             rows={4}
             variant="filled"
             value={description}
-            onChange={e => setDescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </Box>
       </DialogContent>
