@@ -3,6 +3,7 @@ import { Layout } from 'client/src/components/Layout';
 import { useState } from 'react';
 import TicketTable, { TicketTableColumns } from './datatable/TicketTable';
 import CreateTicketModal from './modal/CreateTicketModal';
+import AddIcon from '@mui/icons-material/Add';
 
 const ticketColumns: TicketTableColumns[] = [
   {
@@ -30,15 +31,14 @@ export function Tickets() {
     <Layout
       title="Ticketing App"
       pageAction={
-        <Box>
+       
           <Button
-            fullWidth
             variant="contained"
             onClick={() => setOpenCreateTicketDialog(true)}
+            startIcon={<AddIcon />}
           >
             Create
           </Button>
-        </Box>
       }
     >
       <TicketTable columns={ticketColumns} />
